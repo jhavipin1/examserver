@@ -56,16 +56,16 @@ public class ExamserverApplication implements CommandLineRunner {
 //
             User user = new User();
 
-            user.setFirstName("Durgesh");
-            user.setLastName("Tiwari");
-            user.setUsername("durgesh8896");
-            user.setPassword(this.bCryptPasswordEncoder.encode("abc"));
-            user.setEmail("abc@gmail.com");
+            user.setFirstName("Vipin");
+            user.setLastName("Jha");
+            user.setUsername("jhavipin1");
+            user.setPassword(this.bCryptPasswordEncoder.encode("vipin123"));
+            user.setEmail("jhavipin1@gmail.com");
             user.setProfile("default.png");
 
             Role role1 = new Role();
-            role1.setRoleId(44L);
-            role1.setRoleName("ADMIN");
+            role1.setRoleId(1L);
+            role1.setRoleName("Admin");
 
             Set<UserRole> userRoleSet = new HashSet<>();
             UserRole userRole = new UserRole();
