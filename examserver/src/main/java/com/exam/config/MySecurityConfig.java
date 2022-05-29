@@ -1,6 +1,5 @@
 package com.exam.config;
 
-import com.exam.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -17,6 +16,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.exam.jwt.service.UserDetailsServiceImpl;
 
 
 
@@ -73,6 +74,32 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
-
+    @Override
+    public void configure(WebSecurity webSecurity) throws Exception {
+        
+		webSecurity
+            .ignoring()
+            .antMatchers(HttpMethod.OPTIONS, "/**")
+            .and()
+            .ignoring()
+            .antMatchers(
+                HttpMethod.GET,
+                "/share/**" //Other Stuff You want to Ignore
+            )
+            
+            .antMatchers(HttpMethod.OPTIONS, "/**")
+            .and()
+            .ignoring().antMatchers(AUTH_WHITELIST);
+    }
+    
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**",
+            "/configuration/**",
+            "/swagger-ui/**",
+            "/sysAdmin/**"
+    };
 
 }

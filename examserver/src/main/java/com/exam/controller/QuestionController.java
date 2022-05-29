@@ -1,14 +1,14 @@
 package com.exam.controller;
 
-import com.exam.model.exam.Question;
-import com.exam.model.exam.Quiz;
-import com.exam.service.QuestionService;
-import com.exam.service.QuizService;
+import com.exam.entity.exam.Question;
+import com.exam.entity.exam.Quiz;
+import com.exam.service.questionService.IQuestionService;
+import com.exam.service.quizService.IQuizService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.Query;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,10 +19,10 @@ import java.util.Set;
 @RequestMapping("/question")
 public class QuestionController {
     @Autowired
-    private QuestionService service;
+    private IQuestionService service;
 
     @Autowired
-    private QuizService quizService;
+    private IQuizService iQuizService;
 
     //add question
     @PostMapping("/")
@@ -44,9 +44,9 @@ public class QuestionController {
 //        Set<Question> questionsOfQuiz = this.service.getQuestionsOfQuiz(quiz);
 //        return ResponseEntity.ok(questionsOfQuiz);
 
-        Quiz quiz = this.quizService.getQuiz(qid);
+        Quiz quiz = this.iQuizService.getQuiz(qid);
         Set<Question> questions = quiz.getQuestions();
-        List list = new ArrayList(questions);
+        List<Question> list = new ArrayList<Question>(questions);
         if (list.size() > Integer.parseInt(quiz.getNumberOfQuestions())) {
             list = list.subList(0, Integer.parseInt(quiz.getNumberOfQuestions() + 1));
         }
