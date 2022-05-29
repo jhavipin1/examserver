@@ -1,11 +1,11 @@
 package com.exam.controller;
 
-import com.exam.config.JwtUtils;
 import com.exam.entity.User;
 import com.exam.helper.UserNotFoundException;
 import com.exam.jwt.JwtRequest;
 import com.exam.jwt.JwtResponse;
-import com.exam.jwt.service.UserDetailsServiceImpl;
+import com.exam.jwt.JwtUtils;
+import com.exam.jwt.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

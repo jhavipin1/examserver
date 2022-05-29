@@ -1,4 +1,4 @@
-package com.exam.config;
+package com.exam.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

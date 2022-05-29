@@ -1,4 +1,4 @@
-package com.exam.jwt.service;
+package com.exam.jwt;
 
 import com.exam.entity.User;
 import com.exam.repository.UserRepository;
