@@ -1,5 +1,6 @@
 package com.exam.helper;
 
+@SuppressWarnings("serial")
 public class UserNotFoundException extends Exception {
 
     public UserNotFoundException() {

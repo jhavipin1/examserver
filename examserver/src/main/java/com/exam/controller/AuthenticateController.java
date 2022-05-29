@@ -1,4 +1,4 @@
-package com.exam.jwt.controller;
+package com.exam.controller;
 
 import com.exam.config.JwtUtils;
 import com.exam.entity.User;
